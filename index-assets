@@ -1,0 +1,75 @@
+#!/usr/bin/env python
+# This script can be run over a WA assets directory structure (e.g.
+# the contents of ~/.workload_automation/dependencies/) into order
+# to genrate a JSON index to be hosted along with said structure on
+# an HTTP server.
+# By setting remote_assets_url to point to the URL of the hosted
+# index in WA config, it the possible to get WA to fetch assets from
+# the server on as-need basis if they are not found locally.
+import os
+import sys
+import argparse
+import hashlib
+import logging
+import json
+
+CHUNK = 2048
+
+
+def index_assets(rootdir):
+    assets = []
+    for root, dirs, files in os.walk(rootdir):
+        for f in files:
+            path = os.path.join(root, f)
+            relpath = os.path.relpath(path, rootdir)
+            h = hashlib.sha256()
+            with open(path, 'rb') as fh:
+                buf = fh.read(CHUNK)
+                while buf:
+                    h.update(buf)
+                    buf = fh.read(CHUNK)
+
+            asset = {'path': relpath, 'sha256': h.hexdigest()}
+            logging.debug(asset)
+            assets.append(asset)
+    return assets
+
+
+def get_index(assets_directory):
+    index = {}
+    for entry in os.listdir(assets_directory):
+        path = os.path.join(assets_directory, entry)
+        if not os.path.isdir(path):
+            logging.debug('skipping {}: not a directory'.format(entry))
+            continue
+        logging.debug('indexing {}'.format(path))
+        index[entry] = index_assets(path)
+    return index
+
+
+def main(args):
+    if args.verbose:
+        logging.basicConfig(level=logging.DEBUG)
+    else:
+        logging.basicConfig(levl=logging.INFO)
+    wfh = sys.stdout
+    if args.output:
+        wfh = open(args.output, 'w')
+    try:
+        index = get_index(args.directory)
+        json.dump(index, wfh, indent=4, separators=(',', ': '))
+    finally:
+        if args.output:
+            wfh.close()
+
+
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser(
+        description='create an index of WA assets from a WA assets directory.')
+    parser.add_argument('directory', metavar='DIR',
+                        help='directory containing WA assets.')
+    parser.add_argument('-o', '--output', metavar='FILE',
+                        help='Output file. If not specified, STDOUT will be used.')
+    parser.add_argument('-v', '--verbose', action='store_true',
+                        help='Enable verbose output')
+    sys.exit(main(parser.parse_args()))
