@@ -54,13 +54,9 @@ def main(args):
         logging.basicConfig(levl=logging.INFO)
     wfh = sys.stdout
     if args.output:
-        wfh = open(args.output, 'w')
-    try:
-        index = get_index(args.directory)
-        json.dump(index, wfh, indent=4, separators=(',', ': '))
-    finally:
-        if args.output:
-            wfh.close()
+        with open(args.output, 'w') as wfh:
+            index = get_index(args.directory)
+            json.dump(index, wfh, indent=4, separators=(',', ': '))
 
 
 if __name__ == '__main__':
