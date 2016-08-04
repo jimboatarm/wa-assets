@@ -1,7 +1,7 @@
 {
     "msword": [
         {
-            "path": "2.jpg",
+            "path": "uxperf_1600x1200.jpg",
             "sha256": "7374d90da11d60dc4c64ea6ef3b60b1f75e6f50d0d1cc054b358e174bdd512c9"
         },
         {
@@ -11,13 +11,13 @@
     ],
     "excel": [
         {
-            "path": "wa_test.xlsx",
+            "path": "uxperf_test_doc.xlsx",
             "sha256": "096e276435a84c6bcf19a4454fb1b6b3991b29a636a3f940854740302a9b9597"
         }
     ],
     "googleslides": [
         {
-            "path": "2.jpg",
+            "path": "uxperf_1600x1200.jpg",
             "sha256": "7374d90da11d60dc4c64ea6ef3b60b1f75e6f50d0d1cc054b358e174bdd512c9"
         },
         {
@@ -27,23 +27,19 @@
     ],
     "googlephotos": [
         {
-            "path": "1.jpeg",
-            "sha256": "2d7dbe2b2b464ec9a0c7c783a7741e4818c11ae6e37c6aee101a47af2f831fbc"
+            "path": "uxperf_1200x1600.png",
+            "sha256": "5100461ee387960eaf1eac2ec6619ed18fe8278d2e4edee7aa4e5e96f8ab6e09"
         },
         {
-            "path": "2.jpg",
+            "path": "uxperf_1600x1200.jpg",
             "sha256": "7374d90da11d60dc4c64ea6ef3b60b1f75e6f50d0d1cc054b358e174bdd512c9"
         },
         {
-            "path": "3.jpg",
-            "sha256": "f80e6901231d8bb9e70f3672f340cfa2a526f29caacd8c5cf7d54ad1200b3977"
+            "path": "uxperf_2448x3264.png",
+            "sha256": "e4fd831708fdadd6612361313ef77f041f0743f330d21bdb8187e3e8323f589b"
         },
         {
-            "path": "4.jpeg",
-            "sha256": "8ad422ab86e4eaf5f72fa2f2608e840022edbf6f179d70c12de765c69b05e851"
-        },
-        {
-            "path": "5.jpeg",
+            "path": "uxperf_3264x2448.jpg",
             "sha256": "fb6e9ab18b93673c132fa23bec1b944735b74fd6326ed78e6641f018c6704b30"
         }
     ],
@@ -55,7 +51,7 @@
     ],
     "powerpoint": [
         {
-            "path": "2.jpg",
+            "path": "uxperf_1600x1200.jpg",
             "sha256": "7374d90da11d60dc4c64ea6ef3b60b1f75e6f50d0d1cc054b358e174bdd512c9"
         },
         {
